@@ -1,34 +1,56 @@
-const canvas = document.getElementById('artCanvas');
-const ctx = canvas.getContext('2d');
+body {
+    background-color: black;
+    color: yellow;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    animation: backgroundAnimation 10s linear infinite alternate;
+}
 
-document.getElementById('generate-button').addEventListener('click', generateArt);
-document.getElementById('download-button').addEventListener('click', downloadArt);
-
-function generateArt() {
-    // Очистити попереднє зображення
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Випадкові кольори та форми
-    for (let i = 0; i < 50; i++) {
-        ctx.fillStyle = getRandomColor();
-        ctx.beginPath();
-        ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 50, 0, Math.PI * 2);
-        ctx.fill();
+@keyframes backgroundAnimation {
+    0% {
+        background-color: #000;
+    }
+    50% {
+        background-color: #1a1a1a;
+    }
+    100% {
+        background-color: #000;
     }
 }
 
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-function downloadArt() {
-    const link = document.createElement('a');
-    link.download = 'nft_art.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+.logos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+button {
+    background-color: yellow;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: orange;
 }
